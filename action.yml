@@ -1,0 +1,39 @@
+name: "Deploy Docker Keycloak Server"
+description: "Sets up and deploys a Keycloak server using Ansible and Docker"
+inputs:
+  domain:
+    description: "The domain for the Keycloak server"
+    required: true
+    type: string
+  ssh_host_ip:
+    description: "The IP address of the SSH host"
+    required: true
+    type: string
+  ssh_host_name:
+    description: "The name of the SSH host"
+    required: true
+    type: string
+  ssh_host_domain:
+    description: "The SSH host domain (optional)"
+    required: false
+    type: string
+  registry:
+    description: "The Docker registry to use (optional)"
+    required: false
+    type: string
+secrets:
+  SSH_USER:
+    description: "The SSH user"
+    required: true
+  SSH_PRIVATE_KEY:
+    description: "The private key for SSH authentication"
+    required: true
+  SUDO_PASSWORD:
+    description: "The sudo password (optional)"
+    required: false
+  ANSIBLE_VAULT_PASSWORD:
+    description: "The Ansible Vault password"
+    required: true
+runs:
+  using: "node16"
+  main: "index.js"
